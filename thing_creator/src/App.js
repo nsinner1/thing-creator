@@ -4,6 +4,7 @@ import Footer from './Footer';
 import ThingList from './ThingList';
 import ThingForm from './ThingForm';
 import ThingItem from './ThingItem';
+import { v4 as uuid } from 'uuid';
 import './App.css';
 
 class App extends React.Component {
@@ -13,18 +14,25 @@ class App extends React.Component {
     this.state = {
       things: [
         {
-          id: 1,
+          id: uuid(),
           name: 'cat',
           type: 'animal',
         },
         {
-          id: 2,
+          id: uuid(),
           name: 'dog',
           type: 'animal',
         }
       ],
       popularThing: 'Nothing yet'
     }
+    this.createThingHandler = this.createThingHandler.bind(this);
+  }
+
+  createThingHandler(thing){
+    this.setState({
+      things: this.state.things.concat(thing)
+    })
   }
 
   render() {
@@ -32,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <Header thing={this.state.thing}/>
         <main>
-          <ThingList thing={this.state.thing} onThingCreate={(thing) => alert(thing)}/>
+          <ThingList things={this.state.things} onCreated={this.createThingHandler}/>
         </main>
         <Footer footerText="This is the new Footer"/>
       </div>
