@@ -8,7 +8,7 @@ class Header extends React.Component {
     render(){
         return (
             <>
-            <h2>This is our Number of Things</h2>
+            <h2>This is our Number of Things </h2>
             </>
         )
     }
