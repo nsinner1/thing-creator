@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './Header';
+import Footer from './Footer';
+import ThingList from './ThingList';
+import ThingForm from './ThingForm';
+import ThingItem from './ThingItem';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      things: [
+        {
+          id: 1,
+          name: 'cat',
+          type: 'animal',
+        },
+        {
+          id: 2,
+          name: 'dog',
+          type: 'animal',
+        }
+      ],
+      popularThing: 'Nothing yet'
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header thing={this.state.thing}/>
+        <main>
+          <ThingList thing={this.state.thing} onThingCreate={(thing) => alert(thing)}/>
+        </main>
+        <Footer footerText="This is the new Footer"/>
+      </div>
+    )
+  }
 }
 
 export default App;
